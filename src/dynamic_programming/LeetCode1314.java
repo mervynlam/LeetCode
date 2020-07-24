@@ -1,4 +1,4 @@
-package dp;
+package dynamic_programming;
 
 import java.util.Arrays;
 import java.util.Scanner;
