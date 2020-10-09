@@ -27,8 +27,7 @@
 
 package com.mervyn.leetcode.editor.cn;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class LongestSubstringWithoutRepeatingCharacters {
     public static void main(String[] args) {
@@ -38,29 +37,41 @@ public class LongestSubstringWithoutRepeatingCharacters {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int lengthOfLongestSubstring(String s) {
-            Set<Integer> charSet = new HashSet<Integer>();
+            Map<Character, Integer> charIndex = new HashMap<>();
             int result = 0;
-            int temp = 0;
-            for (int i = 0; i < s.length(); ++i) {
-                int c = s.charAt(i);
-                if (charSet.contains(c)) {
-                    charSet.clear();
-                    charSet.add(c);
-                    if (temp > result) {
-                        result = temp;
-                    }
-                    temp = 1;
-                } else {
-                    charSet.add(c);
-                    temp++;
+            for (int end = 0, start = 0; end < s.length(); ++end) {
+                char endc = s.charAt(end);
+                if (charIndex.containsKey(endc)) {
+                    start=Math.max(charIndex.get(endc), start);
                 }
-            }
-            if (temp > result) {
-                result = temp;
+                charIndex.put(endc, end+1);
+                result = Math.max(end - start + 1, result);
             }
             return result;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
-
+//题解一
+//执行耗时:9 ms,击败了48.42% 的Java用户
+//内存消耗:38.8 MB,击败了92.10% 的Java用户
+//    class Solution {
+//        public int lengthOfLongestSubstring(String s) {
+//            List<Integer> subStringList = new ArrayList<>();
+//            if (s.length() == 0) return 0;
+//            int result = 0;
+//            for (int i = 0; i < s.length(); ++i) {
+//                int c = s.charAt(i);
+//                if (subStringList.contains(c)) {
+//                    result = Math.max(result, subStringList.size());
+//                    int index = subStringList.indexOf(c);
+//                    for (int j = index; j >= 0; --j) subStringList.remove(j);
+//                    subStringList.add(c);
+//                } else {
+//                    subStringList.add(c);
+//                }
+//            }
+//            result = Math.max(result, subStringList.size());
+//            return result;
+//        }
+//    }
 }
