@@ -1,4 +1,4 @@
-package divide_and_conquer;
+package com.mervyn.leetcode;
 
 import java.util.Arrays;
 import java.util.Scanner;

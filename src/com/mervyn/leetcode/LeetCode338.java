@@ -1,4 +1,4 @@
-package dynamic_programming;
+package com.mervyn.leetcode;
 
 import java.util.Arrays;
 import java.util.Scanner;
