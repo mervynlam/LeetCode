@@ -25,27 +25,29 @@
 
 
 package com.mervyn.leetcode.editor.cn;
-public class BestTimeToBuyAndSellStock{
+
+public class BestTimeToBuyAndSellStock {
     public static void main(String[] args) {
-         Solution solution = new BestTimeToBuyAndSellStock().new Solution();
+        Solution solution = new BestTimeToBuyAndSellStock().new Solution();
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int maxProfit(int[] prices) {
-        int min = Integer.MAX_VALUE;
-        int max = 0;
-        for (int i = 0; i < prices.length; ++i) {
-            if (prices[i] < min) {
-                min = prices[i];
-                continue;
+    class Solution {
+        public int maxProfit(int[] prices) {
+            int min = Integer.MAX_VALUE;
+            int max = 0;
+            for (int i = 0; i < prices.length; ++i) {
+                if (prices[i] < min) {
+                    min = prices[i];
+                    continue;
+                }
+                int benifit = prices[i] - min;
+                if (benifit > max)
+                    max = benifit;
             }
-            int benifit = prices[i] - min;
-            if (benifit > max)
-                max = benifit;
+            return max;
         }
-        return max;
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }

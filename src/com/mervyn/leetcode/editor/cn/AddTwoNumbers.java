@@ -34,7 +34,6 @@ public class AddTwoNumbers {
      */
     class Solution {
         public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-
             ListNode head = null;
             ListNode tail = head;
             int c = 0;

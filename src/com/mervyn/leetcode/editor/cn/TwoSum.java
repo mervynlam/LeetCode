@@ -25,6 +25,10 @@ public class TwoSum {
         Solution solution = new TwoSum().new Solution();
     }
 
+    /**
+     *  遍历数组，将数值和下标存入Map中。
+     *  遍历时查找Map是否存在 target-nums[i] 的值。
+     */
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int[] twoSum(int[] nums, int target) {

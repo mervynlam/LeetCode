@@ -24,23 +24,23 @@ public class RangeSumQueryImmutable {
 
     public static void main(String[] args) {
     }
-    
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class NumArray {
+    class NumArray {
 
-    int[] sum;
+        int[] sum;
 
-    public NumArray(int[] nums) {
-        sum = new int[nums.length+1];
-        for (int i = 0; i < nums.length; ++i) {
-            sum[i+1] = sum[i] + nums[i];
+        public NumArray(int[] nums) {
+            sum = new int[nums.length + 1];
+            for (int i = 0; i < nums.length; ++i) {
+                sum[i + 1] = sum[i] + nums[i];
+            }
+        }
+
+        public int sumRange(int i, int j) {
+            return sum[j + 1] - sum[i];
         }
     }
-    
-    public int sumRange(int i, int j) {
-        return sum[j+1]-sum[i];
-    }
-}
 
 /**
  * Your NumArray object will be instantiated and called as such:
