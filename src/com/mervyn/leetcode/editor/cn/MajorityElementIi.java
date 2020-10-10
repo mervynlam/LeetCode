@@ -48,11 +48,7 @@ public class MajorityElementIi {
     class Solution {
         public List<Integer> majorityElement(int[] nums) {
             List<Integer> result = new ArrayList<>();
-            if (nums.length == 0) return null;
-            if (nums.length == 1) {
-                result.add(nums[0]);
-                return result;
-            }
+            if (nums.length == 0) return result;
             int cand1 = 0;
             int cand2 = 0;
             int count1 = 0;
