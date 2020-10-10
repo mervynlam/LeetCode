@@ -30,10 +30,26 @@ public class MajorityElement {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int majorityElement(int[] nums) {
-            Arrays.sort(nums);
-            return nums[nums.length / 2];
+            int c = nums[0];
+            int count = 1;
+            for (int i = 1; i< nums.length; ++i) {
+                if (count == 0) {
+                    count = 1;
+                    c = nums[i];
+                    continue;
+                }
+                if (c == nums[i]) count++;
+                else count--;
+            }
+            return c;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
+//    class Solution {
+//        public int majorityElement(int[] nums) {
+//            Arrays.sort(nums);
+//            return nums[nums.length / 2];
+//        }
+//    }
 }
