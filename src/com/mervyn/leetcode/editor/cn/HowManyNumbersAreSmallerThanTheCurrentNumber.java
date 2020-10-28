@@ -51,6 +51,9 @@ public class HowManyNumbersAreSmallerThanTheCurrentNumber {
         Solution solution = new HowManyNumbersAreSmallerThanTheCurrentNumber().new Solution();
     }
 
+    /**
+     * nums[i]值不大，可以用一个数组装nums[i]出现的次数
+    */
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int[] smallerNumbersThanCurrent(int[] nums) {

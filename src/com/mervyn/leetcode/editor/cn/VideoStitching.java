@@ -80,6 +80,12 @@ public class VideoStitching {
 
     /**
      * 我是笨蛋
+     * dp[i]：对[0,i)的时间需要的最少碎片数。
+     * dp[0]:[0,0)无意义，设为0
+     *
+     * 对每个碎片如果：clips[a][0] <= i <= clips[a][1]
+     * 有可以取或不取
+     * dp[i] = min(dp[i], dp[clips[a][0]]+1)
     */
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
