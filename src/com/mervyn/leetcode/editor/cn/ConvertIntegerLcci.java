@@ -55,7 +55,6 @@ public class ConvertIntegerLcci {
             int ans = 0;
             while (diff != 0) {
                 ans++;
-                System.out.println(Integer.toBinaryString(diff));
                 diff &= (diff-1);
             }
             return ans;
