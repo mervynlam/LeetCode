@@ -13,11 +13,13 @@ ${question.content}
 package com.mervyn.leetcode.editor.cn;
 
 public class $!velocityTool.camelCaseName(${question.titleSlug}) {
-    //${question.frontendQuestionId}
     public static void main(String[] args) {
          Solution solution = new $!velocityTool.camelCaseName(${question.titleSlug})().new Solution();
     }
     
+    /**
+     * ${question.frontendQuestionId}
+     */
     ${question.code}
 }
 ```
