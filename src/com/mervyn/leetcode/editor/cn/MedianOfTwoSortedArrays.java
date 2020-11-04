@@ -61,40 +61,79 @@ public class MedianOfTwoSortedArrays {
     }
 
     /**
-     * 4
+     * 4 - 二分
+     * https://www.bilibili.com/video/BV1wJ411N7U8
      */
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-            if (nums1.length == 0 && nums2.length == 0) return 0;
-            int[] merge = new int[nums1.length + nums2.length];
-            int index = 0;
-            int num1Index = 0;
-            int num2Index = 0;
-            while (num1Index < nums1.length && num2Index < nums2.length) {
-                if (nums1[num1Index] < nums2[num2Index]) {
-                    merge[index++] = nums1[num1Index];
-                    num1Index++;
+            int n = nums1.length;
+            int m = nums2.length;
+            int[] a = n > m ? nums2 : nums1;
+            int[] b = n > m ? nums1 : nums2;
+            n = a.length;
+            m = b.length;
+
+            int l = 0, r = n;
+            int i, j;
+            int k = (n + m + 1) >> 1;
+
+            while (l <= r) {
+                i = (r - l >> 2) + l;
+                j = k - i;
+                if (i!=0&&a[i-1]>b[j]) {
+                    r = i-1;
+                } else if (i!=n&&b[j-1]>a[i]) {
+                    l = i+1;
                 } else {
-                    merge[index++] = nums2[num2Index];
-                    num2Index++;
+                    double small;
+                    if (i == 0) small = b[j-1];
+                    else if (j == 0) small = a[i-1];
+                    else small = Math.max(a[i-1], b[j-1]);
+                    if (((n+m)&1) == 1) return small;
+
+                    int large;
+                    if (i == n) large = b[j];
+                    else if (j == m) large = a[i];
+                    else large = Math.min(b[j], a[i]);
+
+                    return (small+large)/2.0;
                 }
             }
-            if (num1Index == nums1.length) {
-                while (num2Index < nums2.length) {
-                    merge[index++] = nums2[num2Index];
-                    num2Index++;
-                }
-            }
-            if (num2Index == nums2.length) {
-                while(num1Index < nums1.length) {
-                    merge[index++] = nums1[num1Index];
-                    num1Index++;
-                }
-            }
-            return (merge.length & 1) == 1? merge[merge.length/2] : (merge[(merge.length-1)/2]+merge[merge.length/2])/2.0;
+            return 0;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
+//    class Solution {
+//        public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+//            if (nums1.length == 0 && nums2.length == 0) return 0;
+//            int[] merge = new int[nums1.length + nums2.length];
+//            int index = 0;
+//            int num1Index = 0;
+//            int num2Index = 0;
+//            while (num1Index < nums1.length && num2Index < nums2.length) {
+//                if (nums1[num1Index] < nums2[num2Index]) {
+//                    merge[index++] = nums1[num1Index];
+//                    num1Index++;
+//                } else {
+//                    merge[index++] = nums2[num2Index];
+//                    num2Index++;
+//                }
+//            }
+//            if (num1Index == nums1.length) {
+//                while (num2Index < nums2.length) {
+//                    merge[index++] = nums2[num2Index];
+//                    num2Index++;
+//                }
+//            }
+//            if (num2Index == nums2.length) {
+//                while(num1Index < nums1.length) {
+//                    merge[index++] = nums1[num1Index];
+//                    num1Index++;
+//                }
+//            }
+//            return (merge.length & 1) == 1? merge[merge.length/2] : (merge[(merge.length-1)/2]+merge[merge.length/2])/2.0;
+//        }
+//    }
 }
