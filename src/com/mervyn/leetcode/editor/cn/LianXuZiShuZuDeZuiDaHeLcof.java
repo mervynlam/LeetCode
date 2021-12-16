@@ -37,6 +37,23 @@ public class LianXuZiShuZuDeZuiDaHeLcof {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int maxSubArray(int[] nums) {
+            int sum = 0;
+            int max = nums[0];
+            for (int num : nums) {
+                sum += num;
+                int tmp = Math.max(sum, num);
+                sum = tmp;
+                max = Math.max(max, tmp);
+            }
+            return max;
+        }
+    }
+//leetcode submit region end(Prohibit modification and deletion)
+
+}
+/*
+*
+*
             int ans = nums[0];
             int tmp = nums[0];
             for (int i = 1; i < nums.length; ++i) {
@@ -47,9 +64,4 @@ public class LianXuZiShuZuDeZuiDaHeLcof {
                     ans = num;
                 }
             }
-            return ans;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
-
-}
+            return ans;*/
