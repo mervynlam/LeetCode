@@ -79,6 +79,31 @@ class Node {
 };
 */
 class Solution {
+    Node pre;
+    Node head;
+    public Node treeToDoublyList(Node root) {
+        if (root == null) return null;
+        preDfs(root);
+        head.left = pre;
+        pre.right = head;
+        return head;
+    }
+
+    void preDfs(Node node) {
+        if (node == null) {
+            return;
+        }
+        preDfs(node.left);
+        if (head == null) head = node;
+        if (pre != null) pre.right = node;
+        node.left = pre;
+        pre = node;
+        preDfs(node.right);
+    }
+}
+//leetcode submit region end(Prohibit modification and deletion)
+/*
+*
     Stack<Node> stack = new Stack<>();
     public Node treeToDoublyList(Node root) {
         if (root == null) return null;
@@ -108,7 +133,5 @@ class Solution {
         stack.push(node);
         if (node.right != null) preDfs(node.right);
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
-
+    */
 }
