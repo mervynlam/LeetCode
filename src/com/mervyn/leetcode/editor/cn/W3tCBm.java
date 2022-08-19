@@ -68,14 +68,8 @@ public class W3tCBm {
 class Solution {
     public int[] countBits(int n) {
         int[] res = new int[n+1];
-        for (int i = 0; i <= n; i++) {
-            int a = i;
-            int cnt = 0;
-            while(a != 0) {
-                a = a & (a-1);
-                cnt++;
-            }
-            res[i] = cnt;
+        for (int i = 1; i <= n; i++) {
+            res[i] = res[i&(i-1)]+1;
         }
         return res;
     }
