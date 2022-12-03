@@ -70,6 +70,54 @@ public class ListNode {
  * }
  */
 class Solution {
+
+    public ListNode reverseList(ListNode head) {
+        return reverse(null, head);
+    }
+
+    public ListNode reverse(ListNode pre, ListNode cur) {
+        if (cur == null) return pre;
+
+        ListNode tmp = cur.next;
+        cur.next = pre;
+        return reverse(cur, tmp);
+    }
+}
+//leetcode submit region end(Prohibit modification and deletion)
+
+}
+/*
+* 新链表：浪费内存空间
+    public ListNode reverseList(ListNode head) {
+        ListNode root = new ListNode(0,null);
+        while (head != null) {
+            ListNode newNode = new ListNode(head.val);
+            newNode.next = root.next;
+            root.next = newNode;
+            head = head.next;
+        }
+        return root.next;
+    }
+* */
+
+/*
+* 双指针
+    public ListNode reverseList(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head;
+        ListNode tmp = null;
+        while(cur != null) {
+            tmp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = tmp;
+        }
+        return pre;
+    }
+* */
+
+/*
+*
     public ListNode reverseList(ListNode head) {
         if (head == null)
             return null;
@@ -89,7 +137,4 @@ class Solution {
         nowNode.next = oldNode;
         return nowNode;
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
-
-}
+* */
