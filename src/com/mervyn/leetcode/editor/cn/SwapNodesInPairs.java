@@ -61,21 +61,35 @@ public class SwapNodesInPairs {
      */
     class Solution {
         public ListNode swapPairs(ListNode head) {
-            ListNode pHead = new ListNode(0, head);
-            boolean headFlag = true;
-            while (pHead.next != null && pHead.next.next != null) {
-                ListNode tmp = pHead.next.next.next;
-                pHead.next.next.next = pHead.next;
-                pHead.next = pHead.next.next;
-                pHead.next.next.next = tmp;
-                if (headFlag) {
-                    head = pHead.next;
-                    headFlag = false;
-                }
-                pHead = pHead.next.next;
+            ListNode root = new ListNode(0, head);
+            ListNode pre = root;
+            ListNode a = head;
+            while (a != null && a.next != null) {
+                ListNode b = a.next;
+                pre.next = b;
+                a.next = b.next;
+                b.next = a;
+                pre = a;
+                a = a.next;
             }
-            return head;
+            return root.next;
         }
+//        public ListNode swapPairs(ListNode head) {
+//            ListNode pHead = new ListNode(0, head);
+//            boolean headFlag = true;
+//            while (pHead.next != null && pHead.next.next != null) {
+//                ListNode tmp = pHead.next.next.next;
+//                pHead.next.next.next = pHead.next;
+//                pHead.next = pHead.next.next;
+//                pHead.next.next.next = tmp;
+//                if (headFlag) {
+//                    head = pHead.next;
+//                    headFlag = false;
+//                }
+//                pHead = pHead.next.next;
+//            }
+//            return head;
+//        }
     }
 
     //leetcode submit region end(Prohibit modification and deletion)
