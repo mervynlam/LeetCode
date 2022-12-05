@@ -45,34 +45,50 @@ public class IntersectionOfTwoArrays {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int[] intersection(int[] nums1, int[] nums2) {
-            Set<Integer> set = new HashSet<>();
-            Arrays.sort(nums1);
-            for (int num : nums2) {
-                if (binarySearch(num, nums1))
-                    set.add(num);
-            }
-            int index = 0;
-            int[] ans = new int[set.size()];
-            for (int num : set) {
-                ans[index++] = num;
-            }
-            return ans;
-        }
-
-        boolean binarySearch(int num, int[] nums) {
-            int left = 0;
-            int right = nums.length;
-            while (left < right) {
-                int mid = (left + right) / 2;
-                if (nums[mid] == num) return true;
-                if (nums[mid] > num) {
-                    right = mid;
-                } else {
-                    left = mid + 1;
+            Set<Integer> set = new HashSet<Integer>();
+            Set<Integer> ans = new HashSet<Integer>();
+            for(int i : nums1) set.add(i);
+            for (int i : nums2) {
+                if (set.contains(i)) {
+                    ans.add(i);
                 }
             }
-            return false;
+            int[] ansArr = new int[ans.size()];
+            int index = 0;
+            for (int i : ans) {
+                ansArr[index++] = i;
+            }
+            return ansArr;
         }
+//        public int[] intersection(int[] nums1, int[] nums2) {
+//            Set<Integer> set = new HashSet<>();
+//            Arrays.sort(nums1);
+//            for (int num : nums2) {
+//                if (binarySearch(num, nums1))
+//                    set.add(num);
+//            }
+//            int index = 0;
+//            int[] ans = new int[set.size()];
+//            for (int num : set) {
+//                ans[index++] = num;
+//            }
+//            return ans;
+//        }
+//
+//        boolean binarySearch(int num, int[] nums) {
+//            int left = 0;
+//            int right = nums.length;
+//            while (left < right) {
+//                int mid = (left + right) / 2;
+//                if (nums[mid] == num) return true;
+//                if (nums[mid] > num) {
+//                    right = mid;
+//                } else {
+//                    left = mid + 1;
+//                }
+//            }
+//            return false;
+//        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 

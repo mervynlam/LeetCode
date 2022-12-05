@@ -44,6 +44,7 @@ import java.util.*;
 public class IntersectionOfTwoArraysIi {
     public static void main(String[] args) {
         Solution solution = new IntersectionOfTwoArraysIi().new Solution();
+        solution.intersect(new int[]{4,9,5},new int[]{9,4,9,8,4});
     }
 
     /**
@@ -52,28 +53,42 @@ public class IntersectionOfTwoArraysIi {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int[] intersect(int[] nums1, int[] nums2) {
-            Arrays.sort(nums1);
-            Arrays.sort(nums2);
-            int i = 0, j = 0;
-            List<Integer> list = new ArrayList<>();
-            while (i < nums1.length && j < nums2.length) {
-                if (nums1[i] > nums2[j]) {
-                    j++;
-                } else if (nums1[i] < nums2[j]) {
-                    i++;
-                } else {
-                    list.add(nums1[i]);
-                    i++;
-                    j++;
+            int[] cnt1 = new int[1001];
+            int[] cnt2 = new int[1001];
+            for(int i : nums1) cnt1[i]++;
+            for(int i : nums2) cnt2[i]++;
+            List<Integer> ans = new ArrayList<Integer>();
+            for(int i = 0; i < cnt1.length; ++i) {
+                int loop = Math.min(cnt1[i], cnt2[i]);
+                while (loop-- > 0) {
+                    ans.add(i);
                 }
             }
-            int index = 0;
-            int[] ans = new int[list.size()];
-            for (int num : list) {
-                ans[index++] = num;
-            }
-            return ans;
+            return ans.stream().mapToInt(x -> x).toArray();
         }
+//        public int[] intersect(int[] nums1, int[] nums2) {
+//            Arrays.sort(nums1);
+//            Arrays.sort(nums2);
+//            int i = 0, j = 0;
+//            List<Integer> list = new ArrayList<>();
+//            while (i < nums1.length && j < nums2.length) {
+//                if (nums1[i] > nums2[j]) {
+//                    j++;
+//                } else if (nums1[i] < nums2[j]) {
+//                    i++;
+//                } else {
+//                    list.add(nums1[i]);
+//                    i++;
+//                    j++;
+//                }
+//            }
+//            int index = 0;
+//            int[] ans = new int[list.size()];
+//            for (int num : list) {
+//                ans[index++] = num;
+//            }
+//            return ans;
+//        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
