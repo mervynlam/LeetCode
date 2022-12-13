@@ -37,7 +37,7 @@ package com.mervyn.leetcode.editor.cn;
 public class FindTheIndexOfTheFirstOccurrenceInAString {
     public static void main(String[] args) {
          Solution solution = new FindTheIndexOfTheFirstOccurrenceInAString().new Solution();
-         solution.strStr("mississippi", "issip");
+         solution.strStr("aabaaabaaac", "aabaaac");
     }
     
     /**
@@ -46,22 +46,46 @@ public class FindTheIndexOfTheFirstOccurrenceInAString {
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int strStr(String haystack, String needle) {
-        int hCursor = 0;
-        int nCursor = 0;
-        for (int i = 0; i <= haystack.length()-needle.length(); ++i) {
-            hCursor = i;
-            while (hCursor < haystack.length() && haystack.charAt(hCursor) != needle.charAt(nCursor)) hCursor++;
-            if (hCursor + needle.length() > haystack.length()) return -1;
-            while (nCursor < needle.length() && haystack.charAt(hCursor) == needle.charAt(nCursor)) {
-                hCursor++;
-                nCursor++;
+        int[] next = new int[needle.length()];
+        getNext(needle, next);
+        int j = 0;
+        for(int i = 0; i < haystack.length(); ++i){
+            while (j > 0 && haystack.charAt(i) != needle.charAt(j)) j = next[j-1];
+            if (haystack.charAt(i) == needle.charAt(j)) {
+                j++;
             }
-            if (nCursor == needle.length()) return hCursor - nCursor;
-            nCursor = 0;
+            if (j == needle.length()) return i-needle.length()+1;
         }
         return -1;
+    }
+    private void getNext(String str, int[] next) {
+        next[0] = 0;
+        int j = 0;
+        for (int i = 1; i < str.length(); ++i) {
+            while (j > 0 && str.charAt(i) != str.charAt(j)) j = next[j-1];
+            if (str.charAt(i) == str.charAt(j)) j++;
+            next[i] = j;
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
+
+
+//    public int strStr(String haystack, String needle) {
+//        int hCursor = 0;
+//        int nCursor = 0;
+//        for (int i = 0; i <= haystack.length()-needle.length(); ++i) {
+//            hCursor = i;
+//            while (hCursor < haystack.length() && haystack.charAt(hCursor) != needle.charAt(nCursor)) hCursor++;
+//            if (hCursor + needle.length() > haystack.length()) return -1;
+//            while (nCursor < needle.length() && haystack.charAt(hCursor) == needle.charAt(nCursor)) {
+//                hCursor++;
+//                nCursor++;
+//            }
+//            if (nCursor == needle.length()) return hCursor - nCursor;
+//            nCursor = 0;
+//        }
+//        return -1;
+//    }
