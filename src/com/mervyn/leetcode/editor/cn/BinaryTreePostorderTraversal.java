@@ -59,6 +59,7 @@
 package com.mervyn.leetcode.editor.cn;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
@@ -90,19 +91,14 @@ public class BinaryTreePostorderTraversal {
             List<Integer> result = new ArrayList<>();
             if (root == null) return result;
             Stack<TreeNode> stack = new Stack<>();
-            Stack<Integer> valStack = new Stack<>();
-            TreeNode cur = root;
-            stack.push(cur);
-            while(!stack.empty()) {
-                cur = stack.pop();
-                valStack.push(cur.val);
-                if (cur.left != null)
-                    stack.push(cur.left);
-                if (cur.right != null)
-                    stack.push(cur.right);
+            stack.push(root);
+            while (!stack.isEmpty()) {
+                TreeNode cur = stack.pop();
+                result.add(cur.val);
+                if (cur.left != null) stack.push(cur.left);
+                if (cur.right != null) stack.push(cur.right);
             }
-            while(!valStack.empty())
-                result.add(valStack.pop());
+            Collections.reverse(result);
             return result;
         }
     }
@@ -143,4 +139,24 @@ public class BinaryTreePostorderTraversal {
 //            result.add(node.val);
 //        }
 //    }
+
+
+    //List<Integer> result = new ArrayList<>();
+    //            if (root == null) return result;
+    //    Stack<TreeNode> stack = new Stack<>();
+    //    Stack<Integer> valStack = new Stack<>();
+    //    TreeNode cur = root;
+    //            stack.push(cur);
+    //            while(!stack.empty()) {
+    //        cur = stack.pop();
+    //        valStack.push(cur.val);
+    //        if (cur.left != null)
+    //            stack.push(cur.left);
+    //        if (cur.right != null)
+    //            stack.push(cur.right);
+    //    }
+    //            while(!valStack.empty())
+    //                    result.add(valStack.pop());
+    //            return result;
+
 }

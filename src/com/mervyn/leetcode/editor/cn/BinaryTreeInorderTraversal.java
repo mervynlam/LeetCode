@@ -87,23 +87,18 @@ public class BinaryTreeInorderTraversal {
      */
     class Solution {
         public List<Integer> inorderTraversal(TreeNode root) {
+            TreeNode cur = root;
             List<Integer> result = new ArrayList<>();
             Stack<TreeNode> stack = new Stack<>();
-            Stack<Integer> valStack = new Stack<>();
-            TreeNode cur = root;
-            while (cur != null || !stack.empty()) {
-                while(cur != null) {
+            while (cur != null || !stack.isEmpty()) {
+                if (cur == null) {
+                    cur = stack.pop();
+                    result.add(cur.val);
+                    cur = cur.right;
+                } else {
                     stack.push(cur);
-                    valStack.push(cur.val);
                     cur = cur.left;
                 }
-
-                result.add(valStack.pop());
-
-                cur = stack.pop().right;
-            }
-            while (!valStack.empty()) {
-                result.add(valStack.pop());
             }
             return result;
         }
@@ -145,4 +140,24 @@ public class BinaryTreeInorderTraversal {
 //            dfs(node.right);
 //        }
 //    }
+
+    //List<Integer> result = new ArrayList<>();
+    //            Stack<TreeNode> stack = new Stack<>();
+    //            Stack<Integer> valStack = new Stack<>();
+    //            TreeNode cur = root;
+    //            while (cur != null || !stack.empty()) {
+    //                while(cur != null) {
+    //                    stack.push(cur);
+    //                    valStack.push(cur.val);
+    //                    cur = cur.left;
+    //                }
+    //
+    //                result.add(valStack.pop());
+    //
+    //                cur = stack.pop().right;
+    //            }
+    //            while (!valStack.empty()) {
+    //                result.add(valStack.pop());
+    //            }
+    //            return result;
 }
